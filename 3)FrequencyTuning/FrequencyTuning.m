@@ -43,7 +43,8 @@ removePTBatEnd = 1; % if 1, then remove PTB at the end of the session
 rng('default'); % In case legacy rng algorithm was used before running this script, need to reset rng settings before being able to call rng('shuffle')
 randState = rng('shuffle'); % re-seed rng so that start direction is random
 
-ptbPath = 'C:\toolbox\Psychtoolbox';
+% ptbPath = 'C:\toolbox\Psychtoolbox';
+ptbPath = 'C:\toolbox\Psychtoolbox-3-master\Psychtoolbox';
 
 if addPTB
     if ~exist(ptbPath,'dir')
@@ -129,7 +130,7 @@ hiLevel = 85; % highest allowed level of the noise sweep
 startLevel = 50; % start tracking with this level
 levRange = hiLevel-loLevel;
 dBPerSec = 2;
-rms1Level = 107.3; % Enter location-specific calibration level: The headphone output level of a stimulus with an RMS of 1
+rms1Level = 104; % Enter location-specific calibration level: The headphone output level of a stimulus with an RMS of 1
 maxLevel = rms1Level - 3; % level in dB SPL produced by a full-scale deflection sinusoid (peak amplitude of 1 in Matlab)
 
 bufferDur = 125; % msec, duration of each segment of noise
@@ -150,7 +151,7 @@ if generateNewSweep % if we want to generate a sweep from scratch...
     
     while clipCheck
         [y,fs, startF, endF, noiseBWidth, freqSeq] = makeNoiseSweep(currDir);
-        y_scaled = 10^((allRampStartdB(end)-rms1Level)/20).*(y./rms(y)); % %% scale the noise to the max allowed rms1Level
+        y_scaled = 10^((allRampStartdB(end)-rms1Level)/20).*(y./rms(y)); % scale the noise to the max allowed level
         nClipSamples = sum(abs(y_scaled)>1);
         
         if nClipSamples == 0 % no clipping? Great!

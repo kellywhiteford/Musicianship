@@ -1,7 +1,7 @@
 % Save parameters for SpeechInformational here.
 
 Fs = 44100;  % Sampling Frequency
-rms1Level = 107.3; % Enter location-specific calibration level: The headphone output level of a stimulus with an RMS of 1
+rms1Level = 104; % Enter location-specific calibration level: The headphone output level of a stimulus with an RMS of 1
 targ_lev = 65; % desired starting level of target in dB SPL
 mask_lev = 52; % desired level of (individual) masker in dB SPL; this means the overall masker level is mask_lev+3 dB with two maskers
 max_lev = 75; % maximum possible level of the target 

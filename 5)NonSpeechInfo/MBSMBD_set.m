@@ -13,7 +13,7 @@ global work
 global set
 global def
 
-rms1level = 107.3; % Enter location-specific calibration level: The headphone output level of a stimulus with an RMS of 1
+rms1level = 104; % Enter location-specific calibration level: The headphone output level of a stimulus with an RMS of 1
 set.maxlevel = rms1level - 3; % level in dB SPL produced by a full-scale deflection sinusoid (peak amplitude of 1 in Matlab)
 set.burst_dur = 60; %burst duration in ms
 set.ramp_ms = 10;
