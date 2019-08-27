@@ -14,7 +14,7 @@ def=struct(...
     'steprule',-1,                  ...     % stepsize is changed after each upper (-1) or lower (1) reversal
     'reversalnum', 6,               ...     % number of reversals in measurement phase
     'repeatnum', 2,                 ...     % number of repeatitions of the experiment
-    'startvar', 10,                 ...     % starting value of the tracking variable
+    'startvar', 10,                 ...     % starting value of the tracking variable % THIS SHOULD BE 10
     'expvarunit','dB SNR',          ...     % unit of the tracking variable
     'minvar', -80,                  ...     % minimum value of the tracking variable
     'maxvar', 20,                   ...		% maximum value of the tracking variable

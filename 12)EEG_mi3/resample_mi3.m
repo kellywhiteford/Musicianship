@@ -9,7 +9,7 @@ mi3_resampled = resample(mi3,fs_eeg,fs_Wong); % Resampled stimulus has a samplin
 
 mi3_resampled = mi3_resampled/max(abs(mi3_resampled)); % makes max amplitude +/-1 so audiowrite doesn't chop it off
 
-audiowrite('mi3_resampled.wav',mi3_resampled',fs_eeg);
+%audiowrite('mi3_resampled.wav',mi3_resampled',fs_eeg);
 
 figure
 subplot(1,2,1)

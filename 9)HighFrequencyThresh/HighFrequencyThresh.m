@@ -183,7 +183,7 @@ try
     % devices = PsychPortAudio('GetDevices');
     % Then type: devices.DeviceName
     % Find the index of the device name you would like to use, and set
-    % whichSoundDevice (line 251) to be equal to that index number.
+    % whichSoundDevice (line 180) to be equal to that index number.
     
     % Open a connection to the sound card
     pamaster = PsychPortAudio('Open',whichSoundDevice,...     % create a handle to the [default soundcard] This should default to the only ASIO card.

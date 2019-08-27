@@ -103,6 +103,7 @@ n_end = length(noise(:,1))-length(speech(:,1))-n_start;
 signal = [zeros(n_start,1); speech; zeros(n_end,1)];
 
 y = signal+noise;
+% audiowrite('HINT_example.wav',y,fs);
 
 handles.y = y'; % save to "handles" structure so GUI will see it on next button press
 handles.fs = fs;

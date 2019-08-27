@@ -97,7 +97,7 @@ for trialNum = 1:nTrials
     
     WaitSecs(waitduration); % Wait while the sound plays
     endTime = GetSecs;
-    nextPlayTime = presTimesActual + waitduration + ISI_s;
+    nextPlayTime = presTimesActual + waitduration + ISI_s - .0005; % Minus .0005 s to compensate for UMN Booth 2 lag
     pause(0.01);
     
     AudioController('stopReset', TDT); % Stop the sound and reset the cursor
