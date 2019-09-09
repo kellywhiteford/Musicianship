@@ -1,15 +1,15 @@
 % Resample /mi3/ stimulus from Wong et al. (2007) so that sampling rate
 % matches the corresponding EEG system.
 
-fs_eeg = 24414; % The sampleing rate of UMN's EEG system.
+fs_eeg = 48000; % The sampleing rate of uwo's EEG system.
 
-[mi3,fs_Wong] = audioread('mi3.wav'); % stimulus from Wong et al. (2007)
+[mi3,fs_Wong] = audioread('mi3_resampled.wav'); % stimulus from Wong et al. (2007)
 
 mi3_resampled = resample(mi3,fs_eeg,fs_Wong); % Resampled stimulus has a sampling rate of fs_eeg
 
 mi3_resampled = mi3_resampled/max(abs(mi3_resampled)); % makes max amplitude +/-1 so audiowrite doesn't chop it off
 
-audiowrite('mi3_resampled.wav',mi3_resampled',fs_eeg);
+% audiowrite('mi3_resampled_uwo.wav',mi3_resampled',fs_eeg);
 
 figure
 subplot(1,2,1)

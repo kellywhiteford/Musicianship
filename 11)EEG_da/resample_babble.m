@@ -1,15 +1,15 @@
 % Resample multitalker babble from Parbery-Clark et al. (2009, JNeuro) so 
 % that sampling rate matches the EEG stimulus delivery sampling rate.
 
-fs_eeg = 24414; % EEG stimulus delivery sampling rate
+fs_eeg = 48000; % EEG stimulus delivery sampling rate
 
-[babble,fs_Parbery] = audioread('6-talker_2M-4F.wav'); % stimulus from Parbery-Clark et al. (2009, JNeuro)
+[babble,fs_Parbery] = audioread('babble_resampled.wav'); % stimulus from Parbery-Clark et al. (2009, JNeuro)
 
 babble_resampled = resample(babble,fs_eeg,fs_Parbery); % Resampled stimulus has a sampling rate of fs_eeg
 
 babble_resampled = babble_resampled/max(abs(babble_resampled)); % makes max amplitude +/-1 so audiowrite doesn't chop it off
 
-audiowrite('babble_resampled.wav',babble_resampled',fs_eeg);
+audiowrite('babble_resampled48kHz.wav',babble_resampled',fs_eeg);
 
 figure
 subplot(1,2,1)

@@ -1,7 +1,7 @@
 
 % This matlab script is called by afc_main when starting
 % the experiment 'F0DLs'.
-
+sr = 48000;
 def=struct(...
     'expname','F0DLs',           ...		% name of experiment
     'headphone','HD650',		 ...		% Headphone type
@@ -25,9 +25,9 @@ def=struct(...
     'markinterval',1,			 ...		% toggles visuell interval marking on (1), off(0)
     'feedback',1,				 ...		% visual feedback after response: 0 = no feedback, 1 = correct/false/measurement phase
     'backgroundsig',0,           ...		% allows a backgroundsignal during output: 0 = no bgs, 1 = bgs is added to the other signals, 2 = bgs and the other signals are multiplied
-    'samplerate',48000,          ...		% sampling rate in Hz
-    'intervallen',9600*4,          ...        % length of each signal-presentation interval in samples (200 ms * 4)
-    'pauselen', 24000,			 ...		% length of pauses between signal-presentation intervals in samples (500 ms)
+    'samplerate',sr,          ...		% sampling rate in Hz****I changed this to 44100 from 48000k
+    'intervallen',.8*sr,          ...        % length of each signal-presentation interval in samples (200 ms * 4)
+    'pauselen', .5*sr,			 ...		% length of pauses between signal-presentation intervals in samples (500 ms)
     'presiglen',0,               ...		% length of signal leading the first presentation interval in samples
     'postsiglen',0,              ...		% length of signal following the last presentation interval in samples
     'result_path','./Output/',   ...		% where to save results
@@ -37,5 +37,6 @@ def=struct(...
     'savefcn','default',		 ...		% function which writes results to disk
     'debug',0,					 ...		% set 1 for debugging (displays all changible variables during measurement)
     'maxiter',100                ...
+	...
     );
 

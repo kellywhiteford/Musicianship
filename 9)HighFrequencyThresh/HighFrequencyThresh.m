@@ -55,7 +55,7 @@ timeOutSD = 0; % if experiment times out, use this as the standard deviation pla
 rng('default'); % In case legacy rng algorithm was used before running this script, need to reset rng settings before being able to call rng('shuffle')
 randState = rng('shuffle'); % re-seed rng so that start direction is random
 
-ptbPath = 'C:\toolbox\Psychtoolbox';
+ptbPath = 'C:\Program Files\MATLAB\R2016b\toolbox\Psychtoolbox';
 
 if addPTB
     if ~exist(ptbPath,'dir')
@@ -106,7 +106,7 @@ end
 
 
 % Basics
-rms1Level = 107.3; % Enter location-specific calibration level: The headphone output level of a stimulus with an RMS of 1
+rms1Level = 105.5; % Enter location-specific calibration level: The headphone output level of a stimulus with an RMS of 1
 fs = 48000; % samplerate of the sound system
 
 % Staircase settings
