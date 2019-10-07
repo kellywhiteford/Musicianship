@@ -42,8 +42,8 @@ function errMsg = HighFrequencyThresh(subId, expSite)
 
 errMsg = [];
 finished = 0; % track if code successfully reached the end
-addPTB = 1; % if 1, then assume PTB isn't in the path and add it
-removePTBatEnd = 1; % if 1, then remove PTB at the end of the session
+addPTB = 0; % if 1, then assume PTB isn't in the path and add it
+removePTBatEnd = 0; % if 1, then remove PTB at the end of the session
 autoPilotMode = 1; % if 1, code keeps running to next run
 autoPilotOnRun = 2; % only engage autopilot once this run is reached
 makeFigsOnAutopilot = 0; % if 1, keep making figures during the autopilot portion of the experiment
@@ -106,7 +106,7 @@ end
 
 
 % Basics
-rms1Level = 107.3; % Enter location-specific calibration level: The headphone output level of a stimulus with an RMS of 1
+rms1Level = 100; % Enter location-specific calibration level: The headphone output level of a stimulus with an RMS of 1
 fs = 48000; % samplerate of the sound system
 
 % Staircase settings
@@ -177,7 +177,18 @@ try
     % Initialize Psychtoolbox Audio
     InitializePsychSound(1) % The "1" input tells PTB to push as hard is it can to get really low latency
     
-    whichSoundDevice = []; % usually [] is good enough but sometimes need to specify non-default device
+    Devices=PsychPortAudio('GetDevices');
+    if isempty(Devices)
+        error ('There are no devices available using the selected host APIs.');
+    else
+        q=1;
+        while ~strcmp(Devices(q).DeviceName,'ASIO MADIface USB') && q <= length(Devices)
+            q=q+1;
+        end
+    end
+    
+    
+    whichSoundDevice = q-1; % usually [] is good enough but sometimes need to specify non-default device
     % If you need to find the correct sound device to use, type the
     % following in the command window:
     % devices = PsychPortAudio('GetDevices');

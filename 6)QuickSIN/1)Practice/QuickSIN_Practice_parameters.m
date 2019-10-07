@@ -13,7 +13,7 @@ parameters.NumSentencesAvailable = 6; % How many sentences are there to choose f
 parameters.SentencesPerList = 6; % How many sentences should be played from each list?
 
 % Presentation level
-rms1level = 107.3; % Enter location-specific calibration level: The headphone output level of a stimulus with an RMS of 1
+rms1level = 100; % Enter location-specific calibration level: The headphone output level of a stimulus with an RMS of 1
 parameters.MaxLevel =  rms1level; % Level (dB SPL) for a stimulus with an RMS=1
 parameters.OverallLevel = 70; % Overall presentation level (dB SPL) 
 

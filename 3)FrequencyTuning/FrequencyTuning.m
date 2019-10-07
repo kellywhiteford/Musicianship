@@ -38,8 +38,8 @@ function errMsg = FrequencyTuning(subId, expSite)
 
 errMsg = [];
 finished = 0; % track if code successfully reached the end
-addPTB = 1; % if 1, then assume PTB isn't in the path and add it
-removePTBatEnd = 1; % if 1, then remove PTB at the end of the session
+addPTB = 0; % if 1, then assume PTB isn't in the path and add it
+removePTBatEnd = 0; % if 1, then remove PTB at the end of the session
 rng('default'); % In case legacy rng algorithm was used before running this script, need to reset rng settings before being able to call rng('shuffle')
 randState = rng('shuffle'); % re-seed rng so that start direction is random
 
@@ -129,7 +129,7 @@ hiLevel = 85; % highest allowed level of the noise sweep
 startLevel = 50; % start tracking with this level
 levRange = hiLevel-loLevel;
 dBPerSec = 2;
-rms1Level = 107.3; % Enter location-specific calibration level: The headphone output level of a stimulus with an RMS of 1
+rms1Level = 100; % Enter location-specific calibration level: The headphone output level of a stimulus with an RMS of 1
 maxLevel = rms1Level - 3; % level in dB SPL produced by a full-scale deflection sinusoid (peak amplitude of 1 in Matlab)
 
 bufferDur = 125; % msec, duration of each segment of noise
@@ -272,7 +272,18 @@ try
     % Initialize Psychtoolbox Audio
     InitializePsychSound(1) % The "1" input tells PTB to push as hard is it can to get really low latency
     
-    whichSoundDevice = []; % usually [] is good enough but sometimes need to specify non-default device
+    Devices=PsychPortAudio('GetDevices');
+    if isempty(Devices)
+        error ('There are no devices available using the selected host APIs.');
+    else
+        q=1;
+        while ~strcmp(Devices(q).DeviceName,'ASIO MADIface USB') && q <= length(Devices)
+            q=q+1;
+        end
+    end
+    
+    
+    whichSoundDevice = q-1; % usually [] is good enough but sometimes need to specify non-default device
     % If you need to find the correct sound device to use, type the
     % following in the command window: 
     % devices = PsychPortAudio('GetDevices');
