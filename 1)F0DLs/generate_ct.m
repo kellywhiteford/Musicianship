@@ -1,6 +1,6 @@
 function [ct] = generate_ct(f0)
 % Code created by Sara Madsen (Madsen, Whiteford, & Oxenham, 2017)
-% Edited by KLW and RM to filter complex tone for /da/ stimuli
+% Edited by KLW to filter complex tone for /da/ stimuli
 
 global def 
 global set
@@ -16,7 +16,7 @@ N = floor(dur*fs); % Number of samples. "floor" needed for nan function to treat
 t = [0:N-1]./fs;    % time vector
 
 tones = nan(np, N); % one partial per column
-load('da_lpc.mat') % da_lpc.mat created in specEnvLPC.m
+load('da_lpc.mat') % psd_da.mat created in "psd_da.m"
 
 fp = (1:np) * f0; % the frequencies at which our harmonics will be
 amp = abs(freqz(1, a, fp, fs)); % get the amplitudes at those frequencies
@@ -29,7 +29,7 @@ ct = sum(tones);
 ct =ct';
 
 %% plot some stuff
-if ~true % set to true for plotting
+if false
     figure
     load('psd_da.mat') % psd_da.mat created in "psd_da.m"
     f_da = freq;
@@ -43,6 +43,5 @@ if ~true % set to true for plotting
     plot(f_ct(1:length(ct) / 2), 20 * log10(ct_fft(1:length(ct) / 2)))
     ylim([20, 140])
     xlim([0, 6000])
-    legend('Spectral Env.','/da/ Stim.','Filtered Stim.','Location','Best')
     hold off
 end

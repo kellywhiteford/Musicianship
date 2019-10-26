@@ -14,6 +14,7 @@ da = da/max(abs(da)); % makes max amplitude +/-1
 cd ../1)F0DLs % Change back to F0DLs folder
 
 %% Calcualte spectral magnitude of /da/ stimulus
+L = length(da);
 nfft = length(da); % for zero padding
 dft = fft(da,nfft); 
 dft = 2*abs(dft(1:nfft/2+1)); % Just keep the positive values, and multiply them by 2 to account for that we're taking half the fft data
@@ -29,12 +30,14 @@ a = lpc(da,p);  % filter coefficients
 if true
     lspec = freqz(1,a,freq,fs);
     figure 
+    % plot(a)
+    % title(['LPC coefficients: p = ' num2str(p)])
     impz(1, a, [], fs)
     figure
     plot(freq, 20*log10(abs(lspec)),'k');
     hold on
     plot(freq,20*log10(dft * 10),'r') % factor of 10 gives similar gains for peaks
-    ylabel('Magnitude (dB)') 
+    ylabel('Magnitude (dB)') % Might be off- need to account for zero-padding
     xlabel('Frequency (Hz)')
     title(['/da/ Spectral Envelope from LPC: p = ' num2str(p)])
     set(gca,'xscale','log')
@@ -42,4 +45,4 @@ if true
     legend('Spectral Envelope','/da/ Spectrum','Location','Best')
 end
 %% Save variables
-save('da_lpc','a','freq','fs_da') % save variables to .mat file
+save('da_lpc','a','freq','fs_da', 'L') % save variables to .mat file

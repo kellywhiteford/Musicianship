@@ -30,7 +30,7 @@ def=struct(...
 'intervallen',23040,        ...     % length of each signal-presentation interval in samples 
 'pauselen',14400,			...		% length of pauses between signal-presentation intervals in samples
 'presiglen',0,              ...		% length of signal leading the first presentation interval in samples
-'postsiglen',0,             ...		% length of signal following the last presentation interval in samples
+'postsiglen',4800,          ...		% length of signal following the last presentation interval in samples
 'result_path','./Output/',  ...		% where to save results
 'control_path','./Control/',...     % where to save control files
 'messages','Abs',           ...		% message configuration file

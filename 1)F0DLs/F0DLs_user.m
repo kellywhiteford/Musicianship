@@ -7,6 +7,7 @@
 % 
 % work.presig = def.presiglen by 2 matrix.
 %               The pre-signal. 
+%
 %               (column 1 = left, column 2 = right).
 %
 % work.postsig = def.postsiglen by 2 matrix.
@@ -48,6 +49,20 @@ toneB = hann(scale(toneB'./rms(toneB), set.level), set.ramp_ms, def.samplerate);
 tref = [tone_ref, tone_ref, tone_ref, tone_ref];
 tuser = [toneA, toneB, toneA, toneB];
 
+if false
+    figure
+    f_plot = (0:(length(tone_ref) - 1)) / length(tone_ref) * def.samplerate;
+    plot(f_plot, 20 * log10(abs(fft(tone_ref))), 'k')
+    hold on
+    plot(f_plot, 20 * log10(abs(fft(toneA))), 'r')
+    plot(f_plot, 20 * log10(abs(fft(toneB))), 'b')
+    xlabel('Frequency (Hz)')
+    ylabel('Amp (dB)')
+    legend('ref', 'A', 'B')
+    
+    figure
+    plot((1:length(tone_ref)) / def.samplerate, tone_ref)
+end
 
 % if work.presentationCounter == 1 % make plots on first trial (for checking stimuli)
 %     figure

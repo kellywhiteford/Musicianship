@@ -134,6 +134,8 @@ fs = handles.fs;
 
 
 % Play current sentence audio
+disp(size(y));
+disp(size(fs));
 sound(y,fs);
 
 if handles.sentind == handles.par.SentencesPerList % If list is over, determine next list

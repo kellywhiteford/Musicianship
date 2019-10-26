@@ -129,7 +129,7 @@ hiLevel = 85; % highest allowed level of the noise sweep
 startLevel = 50; % start tracking with this level
 levRange = hiLevel-loLevel;
 dBPerSec = 2;
-rms1Level = 107.3; % Enter location-specific calibration level: The headphone output level of a stimulus with an RMS of 1
+rms1Level = 102.7; % Enter location-specific calibration level: The headphone output level of a stimulus with an RMS of 1
 maxLevel = rms1Level - 3; % level in dB SPL produced by a full-scale deflection sinusoid (peak amplitude of 1 in Matlab)
 
 bufferDur = 125; % msec, duration of each segment of noise
@@ -283,7 +283,7 @@ try
     % Open a connection to the sound card
     pamaster = PsychPortAudio('Open',whichSoundDevice,...     % create a handle to the [default soundcard] This should default to the only ASIO card.
         9,...                                 % Sound Playback mode (1 = sound only, 2 = record only, 3 = duplex mode,  add 8 to the initial value -> master mode for using subordinate devices
-        4,...                                 % Latency minimization (0 = none, 1 = try for low latency with reliable playback, 2 = full audio device control, 3 full controll with agressive settings, 4 full controll with agressive settings and fail if device won't meet requirements)
+        1,...                                 % Latency minimization (0 = none, 1 = try for low latency with reliable playback, 2 = full audio device control, 3 full controll with agressive settings, 4 full controll with agressive settings and fail if device won't meet requirements)
         fs,...                                % Sampling Frequency
         [2],...                               % Number of channels for [Out In]
         [],[],...                             % Default buffersize and suggested latency
